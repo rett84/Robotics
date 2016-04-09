@@ -111,7 +111,41 @@ while true
     % entries in the map, f, g and parent arrays
     %
     
+    if ((i > 1) && (map(i - 1, j) == 1 || map(i - 1, j) == 6))
+        new_dist = g(current) + 1;
+        if (new_dist < g(i - 1, j))
+            g(i - 1, j) = new_dist;
+            f(i - 1, j) = new_dist + H(i - 1, j);
+            parent(i - 1, j) = current;
+        end
+    end
     
+    if ((i < nrows) && (map(i + 1, j) == 1 || map(i + 1, j) == 6))
+        new_dist = g(current) + 1;
+        if (new_dist < g(i + 1, j))
+            g(i + 1, j) = new_dist;
+            f(i + 1, j) = new_dist + H(i + 1, j);
+            parent(i + 1, j) = current;
+        end
+    end
+    
+    if ((j > 1) && (map(i, j - 1) == 1 || map(i, j - 1) == 6))
+        new_dist = g(current) + 1;
+        if (new_dist < g(i, j - 1))
+            g(i, j - 1) = new_dist;
+            f(i, j - 1) = new_dist + H(i, j - 1);
+            parent(i, j - 1) = current;
+        end
+    end
+    
+    if ((j < ncols) && (map(i, j + 1) == 1 || map(i, j + 1) == 6))
+        new_dist = g(current) + 1;
+        if (new_dist < g(i, j + 1))
+            g(i, j + 1) = new_dist;
+            f(i, j + 1) = new_dist + H(i, j + 1);
+            parent(i, j + 1) = current;
+        end
+    end
     
     
     
@@ -119,7 +153,8 @@ while true
     
     
 end
-
+    %number of expanded nodes
+     numExpanded = sum(sum(map == 3)) + 1;
 %% Construct route from start to dest by following the parent links
 if (isinf(f(dest_node)))
     route = [];
