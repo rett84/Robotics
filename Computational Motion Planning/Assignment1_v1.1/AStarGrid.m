@@ -112,38 +112,46 @@ while true
     %
     
     if ((i > 1) && (map(i - 1, j) == 1 || map(i - 1, j) == 6))
-        new_dist = g(current) + 1;
-        if (new_dist < g(i - 1, j))
-            g(i - 1, j) = new_dist;
-            f(i - 1, j) = new_dist + H(i - 1, j);
-            parent(i - 1, j) = current;
+         n= sub2ind(size(map), (i-1), j);
+        if (g(n) > g(current) + 1)
+            g(n) = g(current) + 1;
+            f(n) = g(n) + H(n);
+            parent(n) = current;
+             % Update map
+              map(n) = 4; 
         end
     end
     
     if ((i < nrows) && (map(i + 1, j) == 1 || map(i + 1, j) == 6))
-        new_dist = g(current) + 1;
-        if (new_dist < g(i + 1, j))
-            g(i + 1, j) = new_dist;
-            f(i + 1, j) = new_dist + H(i + 1, j);
-            parent(i + 1, j) = current;
+          n= sub2ind(size(map), (i+1), j);
+        if (g(n) > g(current) + 1)
+            g(n) = g(current) + 1;
+            f(n) = g(n) + H(n);
+            parent(n) = current;
+             % Update map
+              map(n) = 4; 
         end
     end
     
     if ((j > 1) && (map(i, j - 1) == 1 || map(i, j - 1) == 6))
-        new_dist = g(current) + 1;
-        if (new_dist < g(i, j - 1))
-            g(i, j - 1) = new_dist;
-            f(i, j - 1) = new_dist + H(i, j - 1);
-            parent(i, j - 1) = current;
+          n= sub2ind(size(map), i, j - 1 );
+        if (g(n) > g(current) + 1)
+            g(n) = g(current) + 1;
+            f(n) = g(n) + H(n);
+            parent(n) = current;
+             % Update map
+              map(n) = 4; 
         end
     end
     
     if ((j < ncols) && (map(i, j + 1) == 1 || map(i, j + 1) == 6))
-        new_dist = g(current) + 1;
-        if (new_dist < g(i, j + 1))
-            g(i, j + 1) = new_dist;
-            f(i, j + 1) = new_dist + H(i, j + 1);
-            parent(i, j + 1) = current;
+           n= sub2ind(size(map), i, j +1);
+        if (g(n) > g(current) + 1)
+            g(n) = g(current) + 1;
+            f(n) = g(n) + H(n);
+            parent(n) = current;
+             % Update map
+              map(n) = 4; 
         end
     end
     
